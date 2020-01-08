@@ -19,7 +19,7 @@ VOLUME ["/etc/3proxy/traf/"]
 VOLUME ["/etc/3proxy/cfg/"]
 VOLUME ["/var/log/3proxy/"]
 
-EXPOSE 80/tcp 81/tcp 82/tcp 83/tcp 84/tcp 85/tcp 86/tcp 87/tcp 88/tcp 89/tcp 90/tcp 91/tcp 92/tcp 93/tcp 94/tcp 95/tcp 96/tcp 97/tcp 98/tcp 99/tcp 100/tcp 101/tcp 102/tcp 103/tcp 104/tcp 105/tcp 106/tcp 107/tcp 108/tcp 109/tcp 110/tcp 111/udp 112/udp 113/udp   
+EXPOSE 80-120
 
 USER nobody
 
