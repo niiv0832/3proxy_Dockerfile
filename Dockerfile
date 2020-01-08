@@ -23,4 +23,4 @@ EXPOSE 80-120
 
 USER nobody
 
-CMD /etc/3proxy/3proxy /etc/3proxy/cfg/3proxy.cfg
+CMD /usr/bin/3proxy /etc/3proxy/cfg/3proxy.cfg
