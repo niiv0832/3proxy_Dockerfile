@@ -1,5 +1,5 @@
 FROM alpine:latest
-MAINTAINER niiv0832 <dockerhubme-ssr@yahoo.com>
+MAINTAINER niiv0832 <dockerhubme-3proxy@yahoo.com>
 
 
 RUN set -ex && \
