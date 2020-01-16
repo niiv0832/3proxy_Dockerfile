@@ -15,6 +15,6 @@ RUN echo 'http://dl-cdn.alpinelinux.org/alpine/edge/main' >> /etc/apk/repositori
 VOLUME ["/etc/3proxy/cfg/"]
 VOLUME ["/var/log/3proxy/"]
 
-EXPOSE 80-120
+EXPOSE 7000-7120
 
 CMD /usr/bin/3proxy /etc/3proxy/cfg/3proxy.cfg
