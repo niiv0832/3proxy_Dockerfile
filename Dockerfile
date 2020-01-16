@@ -1,3 +1,4 @@
+#ver-2020.01.16.12.52
 FROM alpine:latest
 MAINTAINER niiv0832 <dockerhubme-3proxy@yahoo.com>
 
