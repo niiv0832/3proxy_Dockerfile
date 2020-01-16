@@ -33,7 +33,7 @@ FROM scratch
 
 ARG VERSION
 
-COPY --from=0 /3proxy-${VERSION}/src/3proxy /etc/3proxy/
+COPY --from=0 /3proxy-${VERSION}/src/3proxy /3proxy
 
 VOLUME ["/cfg/"]
 VOLUME ["/var/log/3proxy/"]
