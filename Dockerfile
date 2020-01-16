@@ -1,20 +1,45 @@
+###############################################################################
+# BUILD STAGE
+ARG VERSION=0.8.13
+
 FROM alpine:latest
-MAINTAINER niiv0832 <dockerhubme-3proxy@yahoo.com>
+
+ARG VERSION
 
 
-RUN echo 'http://dl-cdn.alpinelinux.org/alpine/edge/main' >> /etc/apk/repositories && \
-      echo 'http://dl-cdn.alpinelinux.org/alpine/edge/community' >> /etc/apk/repositories && \
-      echo 'http://dl-cdn.alpinelinux.org/alpine/edge/testing' >> /etc/apk/repositories && \
-      apk update && \
-      apk upgrade && \
-      apk add 3proxy && \
-      rm -rf /var/cache/apk/* && \
-      mkdir -p /etc/3proxy/cfg && \
-      mkdir -p /var/log/3proxy 
-      
-VOLUME ["/etc/3proxy/cfg/"]
+RUN set -x && \
+    apk --no-cache --update add \
+    bash \
+    build-base \
+    linux-headers \
+    ca-certificates \
+    curl \
+    git \
+    make \
+    upx && \
+    
+RUN set -x && \
+    apk add --update alpine-sdk wget bash ca-certificates curl && \
+    cd / && \
+    wget -q  https://github.com/z3APA3A/3proxy/archive/${VERSION}.tar.gz && \
+    tar -xf ${VERSION}.tar.gz && \
+    cd 3proxy-${VERSION} && \
+    make -f Makefile.Linuх
+    
+###############################################################################
+# PACKAGE STAGE
+
+FROM scratch
+
+ARG VERSION
+
+COPY --from=0 /3proxy-${VERSION}/src/3proxy /etc/3proxy/
+
+VOLUME ["/cfg/"]
 VOLUME ["/var/log/3proxy/"]
 
-EXPOSE 80-120
+EXPOSE 7000-7120
 
-CMD /usr/bin/3proxy /etc/3proxy/cfg/3proxy.cfg
+ENTRYPOINT ["/3proxy"]
+
+CMD ["/cfg/3proxy.cfg"]
