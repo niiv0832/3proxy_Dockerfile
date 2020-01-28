@@ -2,8 +2,7 @@
 FROM alpine:edge
 MAINTAINER niiv0832 <dockerhubme-3proxy@yahoo.com>
 RUN \
-      apk update && \
-      apk upgrade && \
+echo 'http://dl-cdn.alpinelinux.org/alpine/edge/testing' >> /etc/apk/repositories && \
       apk add --no-cache --update 3proxy && \
       rm -rf /var/cache/apk/* && \
       mkdir -p /etc/3proxy/cfg && \
