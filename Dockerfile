@@ -1,4 +1,4 @@
-#ver-2020.01.28.15.27
+#ver-2021.01.02.17.06
 FROM alpine:edge
 MAINTAINER niiv0832 <dockerhubme-3proxy@yahoo.com>
 RUN \
