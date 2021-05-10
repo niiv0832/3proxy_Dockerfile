@@ -1,6 +1,8 @@
 #ver-2021.05.10.xx.xx
 #3PROXY_VERSION 0.9.3
-FROM alpine:latest
+###############################################################################
+# BUILD STAGE
+FROM alpine:latest as builder
 MAINTAINER niiv0832 <dockerhubme-3proxy@yahoo.com>
 ####################################################
 ENV LANG en_US.UTF-8
@@ -22,12 +24,18 @@ RUN set -ex && \
 	rm 3proxy.tar.gz && \
 ####################################################
 	make -C /usr/src/3proxy -f Makefile.Linux && \
-	make -C /usr/src/3proxy -f Makefile.Linux install && \
-#	service 3proxy stop && \
-####################################################
-	rm -rf /usr/src/3proxy && \
+	make -C /usr/src/3proxy -f Makefile.Linux install
+#    
+###############################################################################
+# PACKAGE STAGE
+##
+FROM alpine:edge
+MAINTAINER niiv0832 <dockerhubme-sslibev@yahoo.com>
+##
+COPY --from=builder /bin/3proxy /usr/bin/3proxy
+##
+RUN set -ex && \
 ####################################################	
-	apk del .build-deps && \
       	rm -rf /var/cache/apk/* && \
       	mkdir -p /etc/3proxy/cfg && \
       	mkdir -p /var/log/3proxy
