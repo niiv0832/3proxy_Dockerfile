@@ -1,12 +1,11 @@
 #ver-2021.05.10.xx.xx
 #3PROXY_VERSION 0.9.3
-
 FROM alpine:latest
 MAINTAINER niiv0832 <dockerhubme-3proxy@yahoo.com>
-
+####################################################
 ENV LANG en_US.UTF-8
 ENV DOWNLOAD_URL https://github.com/3proxy/3proxy/archive/refs/tags/0.9.3.tar.gz
-
+####################################################
 RUN set -ex && \
 ####################################################	
 	apk add --no-cache --virtual .build-deps \
@@ -24,7 +23,7 @@ RUN set -ex && \
 ####################################################
 	make -C /usr/src/3proxy -f Makefile.Linux && \
 	make -C /usr/src/3proxy -f Makefile.Linux install && \
-	service 3proxy stop && \
+#	service 3proxy stop && \
 ####################################################
 	rm -rf /usr/src/3proxy && \
 ####################################################	
