@@ -1,7 +1,7 @@
 #ver-2021.05.10.xx.xx
 #3PROXY_VERSION 0.9.3
 
-FROM alpine:edge
+FROM alpine:latest
 MAINTAINER niiv0832 <dockerhubme-3proxy@yahoo.com>
 
 ENV LANG en_US.UTF-8
