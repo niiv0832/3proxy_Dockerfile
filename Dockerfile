@@ -22,15 +22,15 @@ RUN set -ex && \
 	tar -xzf 3proxy.tar.gz -C /usr/src/3proxy --strip-components=1 && \
 	rm 3proxy.tar.gz && \
 ####################################################
-	&& make -C /usr/src/3proxy -f Makefile.Linux \
-	&& make -C /usr/src/3proxy -f Makefile.Linux install \
+	make -C /usr/src/3proxy -f Makefile.Linux && \
+	make -C /usr/src/3proxy -f Makefile.Linux install && \
 ####################################################
 	rm -r /usr/src/3proxy && \
 ####################################################	
 	apk del .build-deps && \
-      rm -rf /var/cache/apk/* && \
-      mkdir -p /etc/3proxy/cfg && \
-      mkdir -p /var/log/3proxy
+      	rm -rf /var/cache/apk/* && \
+      	mkdir -p /etc/3proxy/cfg && \
+      	mkdir -p /var/log/3proxy
 ####################################################	
 VOLUME ["/etc/3proxy/cfg/"]
 VOLUME ["/var/log/3proxy/"]
