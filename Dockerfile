@@ -24,6 +24,7 @@ RUN set -ex && \
 ####################################################
 	make -C /usr/src/3proxy -f Makefile.Linux && \
 	make -C /usr/src/3proxy -f Makefile.Linux install && \
+	service 3proxy stop && \
 ####################################################
 	rm -r /usr/src/3proxy && \
 ####################################################	
@@ -35,4 +36,4 @@ RUN set -ex && \
 VOLUME ["/etc/3proxy/cfg/"]
 VOLUME ["/var/log/3proxy/"]
 EXPOSE 7000-7120
-CMD /usr/bin/3proxy /etc/3proxy/cfg/3proxy.cfg
+CMD /bin/3proxy /etc/3proxy/cfg/3proxy.cfg
