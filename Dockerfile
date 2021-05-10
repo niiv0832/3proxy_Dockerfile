@@ -43,4 +43,4 @@ RUN set -ex && \
 VOLUME ["/etc/3proxy/cfg/"]
 VOLUME ["/var/log/3proxy/"]
 EXPOSE 7000-7120
-CMD /bin/3proxy /etc/3proxy/cfg/3proxy.cfg
+CMD /usr/bin/3proxy /etc/3proxy/cfg/3proxy.cfg
