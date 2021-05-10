@@ -5,7 +5,7 @@ FROM alpine:edge
 MAINTAINER niiv0832 <dockerhubme-3proxy@yahoo.com>
 
 ENV LANG en_US.UTF-8
-ENV 3PROXY_URL https://github.com/3proxy/3proxy/archive/refs/tags/0.9.3.tar.gz
+ENV DOWNLOAD_URL https://github.com/3proxy/3proxy/archive/refs/tags/0.9.3.tar.gz
 
 RUN set -ex && \
 	
@@ -17,7 +17,7 @@ RUN set -ex && \
 		tar \
 		openssl && \
 ####################################################
-	wget -O 3proxy.tar.gz "$3PROXY_URL" && \
+	wget -O 3proxy.tar.gz "$DOWNLOAD_URL" && \
 	mkdir -p /usr/src/3proxy && \
 	tar -xzf 3proxy.tar.gz -C /usr/src/3proxy --strip-components=1 && \
 	rm 3proxy.tar.gz && \
@@ -32,20 +32,6 @@ RUN set -ex && \
       	mkdir -p /etc/3proxy/cfg && \
       	mkdir -p /var/log/3proxy
 ####################################################	
-VOLUME ["/etc/3proxy/cfg/"]
-VOLUME ["/var/log/3proxy/"]
-EXPOSE 7000-7120
-CMD /usr/bin/3proxy /etc/3proxy/cfg/3proxy.cfg
-
-
-
-RUN \
-echo 'http://dl-cdn.alpinelinux.org/alpine/edge/testing' >> /etc/apk/repositories && \
-      
-      rm -rf /var/cache/apk/* && \
-      mkdir -p /etc/3proxy/cfg && \
-      mkdir -p /var/log/3proxy && \
-      rm -rf /var/cache/apk/*      
 VOLUME ["/etc/3proxy/cfg/"]
 VOLUME ["/var/log/3proxy/"]
 EXPOSE 7000-7120
