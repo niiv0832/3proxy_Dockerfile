@@ -8,7 +8,7 @@ ENV LANG en_US.UTF-8
 ENV DOWNLOAD_URL https://github.com/3proxy/3proxy/archive/refs/tags/0.9.3.tar.gz
 
 RUN set -ex && \
-	
+####################################################	
 	apk add --no-cache --virtual .build-deps \
 		gcc \
 		linux-headers \
@@ -26,7 +26,7 @@ RUN set -ex && \
 	make -C /usr/src/3proxy -f Makefile.Linux install && \
 	service 3proxy stop && \
 ####################################################
-	rm -r /usr/src/3proxy && \
+	rm -rf /usr/src/3proxy && \
 ####################################################	
 	apk del .build-deps && \
       	rm -rf /var/cache/apk/* && \
